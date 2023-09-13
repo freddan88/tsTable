@@ -10,7 +10,7 @@ export interface TableProps {
   table: {
     columns: ColumnType[];
     caption?: CaptionType;
-    data: StringIndexType[];
+    data: unknown[];
   };
   filters?: {
     renderBasic: boolean;
@@ -48,8 +48,8 @@ export default function Table({
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <TableRow>
             {columns.map((column, columnHeadIndex) => {
-              const columnHeadKey = `${column.id}_column_${columnHeadIndex}`;
               if (!activeAccessors.includes(column.accessor)) return null;
+              const columnHeadKey = `${column.id}_column_${columnHeadIndex}`;
               return (
                 <TableHeadColumn
                   columnIndex={columnHeadIndex}
@@ -70,14 +70,15 @@ export default function Table({
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
               >
                 {columns.map((column, columnBodyIndex) => {
-                  const columnBodyKey = `${column.id}_cell_${columnBodyIndex}`;
                   if (!activeAccessors.includes(column.accessor)) return null;
+                  const columnBodyKey = `${column.id}_cell_${columnBodyIndex}`;
+                  const rowData = row as StringIndexType;
                   return (
                     <TableBodyColumn
                       rowIndex={rowBodyIndex}
                       key={columnBodyKey}
                       column={column}
-                      row={row}
+                      row={rowData}
                     />
                   );
                 })}
