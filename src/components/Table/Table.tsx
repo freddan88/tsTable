@@ -67,7 +67,7 @@ export default function Table({
             return (
               <TableRow
                 key={rowBodyKey}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                className="after:bg-gray-200 after:bottom-0 after:h-[1px] after:block after:absolute after:left-3 after:right-3 dark:bg-gray-800 dark:border-gray-700 bg-white relative"
               >
                 {columns.map((column, columnBodyIndex) => {
                   if (!activeAccessors.includes(column.accessor)) return null;
