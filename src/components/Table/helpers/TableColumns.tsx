@@ -20,12 +20,6 @@ export const tableColumns: ColumnType[] = [
     },
   },
   {
-    id: "b663a957-3eb1-48b2-b3eb-ec9c9d4dcc0c",
-    Header: "Last Name",
-    accessor: "last_name",
-    sortable: false,
-  },
-  {
     id: "da3be3d7-e3e7-4a26-87ba-70ac37bc0c0f",
     Header: null,
     accessor: "id",
