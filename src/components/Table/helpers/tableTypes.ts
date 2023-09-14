@@ -29,12 +29,16 @@ export interface CellProps<T> {
   row: T;
 }
 
-export interface ColumnType {
+type Accessors<A> = keyof A;
+
+export type ColumnTypes<T> = ColumnType<Accessors<T>>[];
+
+export interface ColumnType<A = string, T = never> {
   Header: string | ReactNode | ((props: ColumnProps) => JSX.Element);
-  accessor: "first_name" | "last_name" | "id";
+  accessor: A;
   sortable: boolean;
   id: string;
-  Cell?: ReactNode | ((props: CellProps<never>) => JSX.Element);
+  Cell?: ReactNode | ((props: CellProps<T>) => JSX.Element);
   visibilityMenu?: {
     label: string;
   };

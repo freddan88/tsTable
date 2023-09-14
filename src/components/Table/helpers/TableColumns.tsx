@@ -1,6 +1,6 @@
-import { CellProps, ColumnType, TableRowType } from "./tableTypes";
+import { CellProps, ColumnTypes, TableRowType } from "./tableTypes";
 
-export const tableColumns: ColumnType[] = [
+export const tableColumns: ColumnTypes<TableRowType> = [
   {
     id: "597096fc-a117-427b-855c-51c28c691df0",
     Header: "First Name",
