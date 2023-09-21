@@ -63,7 +63,7 @@ export default function Table({
         </thead>
         <tbody>
           {data.map((row, rowBodyIndex) => {
-            const rowBodyKey = `${columns[rowBodyIndex].id}_row_${rowBodyIndex}`;
+            const rowBodyKey = `table_body_row_key_${rowBodyIndex}`;
             return (
               <tr
                 key={rowBodyKey}
