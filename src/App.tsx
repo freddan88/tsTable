@@ -1,35 +1,11 @@
 import { useEffect, useState } from "react";
 import Table from "./components/Table/Table";
-import { tableColumns } from "./components/Table/helpers/TableColumns";
-import { tableData } from "./components/Table/helpers/tableData";
-import { tableColumnsApi } from "./components/Table/helpers/TableColumnsApi";
-
-export interface UserResponse {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
+import TableColumnsApi from "./components/Table/helpers/TableColumnsApi";
+import { UserResponse } from "./components/Table/helpers/tableTypes";
 
 function App() {
   const [data, setData] = useState<UserResponse[]>();
+  const [modal, setModal] = useState<UserResponse>();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -44,13 +20,18 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!modal) return;
+    console.log(modal);
+  }, [modal]);
+
   if (!data) return;
 
   return (
     <div className="max-w-4xl mx-auto">
       <Table
         table={{
-          columns: tableColumnsApi,
+          columns: TableColumnsApi({ setModal }),
           data: data,
         }}
       />
