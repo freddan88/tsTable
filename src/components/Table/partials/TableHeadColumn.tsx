@@ -11,6 +11,8 @@ export default function TableHeadColumn({
   columns,
   column,
 }: TableHeadColumnProps) {
+  const testId = `table-head-column-${columnIndex + 1}`;
+
   const renderContent = () => {
     if (typeof column.Header === "function") {
       return column.Header({
@@ -23,7 +25,7 @@ export default function TableHeadColumn({
   };
 
   return (
-    <th scope="col" className="px-6 py-3">
+    <th scope="col" className="px-6 py-3" data-testId={testId}>
       {renderContent()}
     </th>
   );

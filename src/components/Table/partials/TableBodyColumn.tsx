@@ -1,16 +1,19 @@
 import { ColumnType, StringIndexType } from "../helpers/tableTypes";
 
 interface TableBodyCellProps {
+  columnIndex: number;
   column: ColumnType;
   rowIndex: number;
   row: StringIndexType;
 }
 
 export default function TableBodyColumn({
-  column,
+  columnIndex,
   rowIndex,
+  column,
   row,
 }: TableBodyCellProps) {
+  const testId = `table-body-row-${rowIndex + 1}-column-${columnIndex + 1}`;
   const cellValue = row[column.accessor];
 
   const renderContent = () => {
@@ -25,5 +28,9 @@ export default function TableBodyColumn({
     return cellValue;
   };
 
-  return <td className="px-6 py-4">{renderContent()}</td>;
+  return (
+    <td className="px-6 py-4" data-testId={testId}>
+      {renderContent()}
+    </td>
+  );
 }
