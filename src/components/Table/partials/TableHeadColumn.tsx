@@ -25,7 +25,7 @@ export default function TableHeadColumn({
   };
 
   return (
-    <th scope="col" className="px-6 py-3" data-testId={testId}>
+    <th scope="col" className="px-6 py-3" data-testid={testId}>
       {renderContent()}
     </th>
   );

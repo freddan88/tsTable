@@ -33,7 +33,7 @@ export default function TableFiltersAdvanced({
   return (
     <div
       className="px-6 py-3 flex justify-between items-center"
-      data-testId="table-filter-advanced"
+      data-testid="table-filter-advanced"
     >
       <div>{userFilter}</div>
       <ul>

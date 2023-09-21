@@ -46,7 +46,7 @@ export default function Table({
           <caption className={caption.placement}>{caption.label}</caption>
         )}
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr data-testId="table-head-row">
+          <tr data-testid="table-head-row">
             {columns.map((column, columnHeadIndex) => {
               if (!activeAccessors.includes(column.accessor)) return null;
               const columnHeadKey = `${column.id}_column_${columnHeadIndex}`;
@@ -67,7 +67,7 @@ export default function Table({
             return (
               <tr
                 key={rowBodyKey}
-                data-testId={`table-body-row-${rowBodyIndex + 1}`}
+                data-testid={`table-body-row-${rowBodyIndex + 1}`}
                 className="after:bg-gray-200 after:bottom-0 after:h-[1px] after:block after:absolute after:left-3 after:right-3 dark:bg-gray-800 dark:border-gray-700 bg-white relative"
               >
                 {columns.map((column, columnBodyIndex) => {

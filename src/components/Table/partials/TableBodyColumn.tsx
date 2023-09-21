@@ -29,7 +29,7 @@ export default function TableBodyColumn({
   };
 
   return (
-    <td className="px-6 py-4" data-testId={testId}>
+    <td className="px-6 py-4" data-testid={testId}>
       {renderContent()}
     </td>
   );
