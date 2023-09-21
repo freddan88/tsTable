@@ -2,8 +2,8 @@ import { ReactNode, useMemo, useState } from "react";
 import TableHeadColumn from "./partials/TableHeadColumn";
 import TableBodyColumn from "./partials/TableBodyColumn";
 import { CaptionType, ColumnType, StringIndexType } from "./helpers/tableTypes";
-import TableFiltersAdvanced from "./partials/TableFiltersAdvanced";
-import TableFiltersBasic from "./partials/TableFiltersBasic";
+import TableFiltersAdvanced from "./partials/filters/TableFiltersAdvanced";
+import TableFiltersBasic from "./partials/filters/TableFiltersBasic";
 
 export interface TableProps {
   table: {
@@ -13,8 +13,8 @@ export interface TableProps {
   };
   filters?: {
     basic: boolean;
-    searchLabel?: string;
     extended?: ReactNode;
+    searchPlaceholder?: string;
   };
 }
 
@@ -31,7 +31,7 @@ export default function Table({
   return (
     <section className="rounded-md bg-white m-2 py-4 shadow-md">
       {filters && filters.basic && (
-        <TableFiltersBasic searchLabel={filters.searchLabel} />
+        <TableFiltersBasic searchPlaceholder={filters.searchPlaceholder} />
       )}
       {filters && filters.extended && (
         <TableFiltersAdvanced
