@@ -12,6 +12,8 @@ export interface TableProps {
     data: unknown[];
   };
   filters?: {
+    basic: boolean;
+    searchLabel?: string;
     extended?: ReactNode;
   };
 }
@@ -27,8 +29,10 @@ export default function Table({
   }, [activeColumns]);
 
   return (
-    <section className="rounded-md bg-white m-2 py-8 shadow-md">
-      {filters && <TableFiltersBasic />}
+    <section className="rounded-md bg-white m-2 py-4 shadow-md">
+      {filters && filters.basic && (
+        <TableFiltersBasic searchLabel={filters.searchLabel} />
+      )}
       {filters && filters.extended && (
         <TableFiltersAdvanced
           setActiveColumns={setActiveColumns}
