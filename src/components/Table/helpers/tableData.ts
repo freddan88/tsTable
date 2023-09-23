@@ -1,4 +1,4 @@
-import { TableRowType } from "./tableTypes";
+import { TableRowType } from "./table.types";
 
 export const tableData: TableRowType[] = [
   {

@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { ColumnType } from "../../helpers/tableTypes";
+import { ColumnType } from "../../helpers/table.types";
 
 interface TableFiltersAdvancedProps {
   setActiveColumns: Dispatch<SetStateAction<ColumnType[]>>;

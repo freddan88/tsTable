@@ -1,7 +1,11 @@
 import { ReactNode, useMemo, useState } from "react";
 import TableHeadColumn from "./partials/TableHeadColumn";
 import TableBodyColumn from "./partials/TableBodyColumn";
-import { CaptionType, ColumnType, StringIndexType } from "./helpers/tableTypes";
+import {
+  CaptionType,
+  ColumnType,
+  StringIndexType,
+} from "./helpers/table.types";
 import TableFiltersAdvanced from "./partials/filters/TableFiltersAdvanced";
 import TableFiltersBasic from "./partials/filters/TableFiltersBasic";
 

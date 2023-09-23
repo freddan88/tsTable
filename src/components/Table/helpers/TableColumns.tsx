@@ -1,4 +1,4 @@
-import { CellProps, ColumnTypes, TableRowType } from "./tableTypes";
+import { CellProps, ColumnTypes, TableRowType } from "./table.types";
 
 export const tableColumns: ColumnTypes<TableRowType> = [
   {

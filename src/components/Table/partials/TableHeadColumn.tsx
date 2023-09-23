@@ -1,4 +1,4 @@
-import { ColumnType } from "../helpers/tableTypes";
+import { ColumnType } from "../helpers/table.types";
 
 export interface TableHeadColumnProps {
   columns: ColumnType[];

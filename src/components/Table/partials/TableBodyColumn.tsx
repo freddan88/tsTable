@@ -1,4 +1,4 @@
-import { ColumnType, StringIndexType } from "../helpers/tableTypes";
+import { ColumnType, StringIndexType } from "../helpers/table.types";
 
 interface TableBodyCellProps {
   columnIndex: number;
