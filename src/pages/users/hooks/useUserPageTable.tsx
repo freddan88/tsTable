@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { UserResponse } from "../helpers/UserPage.types";
-import { useEffect, useState } from "react";
 import {
   CellProps,
   ColumnTypes,
 } from "../../../shared/components/Table/helpers/table.types";
+import { useQuery } from "react-query";
+import { getAllUsers } from "../helpers/userPageRequests";
 
 export default function useUserPageTable() {
-  const [data, setData] = useState<UserResponse[]>([]);
+  const { data: response, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAllUsers,
+  });
 
   const columns: ColumnTypes<UserResponse> = [
     {
@@ -48,18 +52,5 @@ export default function useUserPageTable() {
     },
   ];
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch("https://jsonplaceholder.typicode.com/users", {
-      signal: controller.signal,
-    })
-      .then((response) => response.json())
-      .then((json: UserResponse[]) => setData(json))
-      .catch((error) => console.error(error));
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  return { columns, data };
+  return { isLoading, data: response?.data || [], columns };
 }
