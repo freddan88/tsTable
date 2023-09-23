@@ -1,7 +1,7 @@
 import {
   CellProps,
   ColumnTypes,
-} from "../../../components/Table/helpers/table.types";
+} from "../../../shared/components/Table/helpers/table.types";
 import { TableRowType } from "../helpers/testPage.types";
 
 export default function useTestPageTable() {

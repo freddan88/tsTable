@@ -1,9 +1,9 @@
-import Table from "../../components/Table/Table";
+import Table from "../../shared/components/Table/Table";
 import { Outlet } from "react-router-dom";
 import useUserPageTable from "./hooks/useUserPageTable";
 
 export default function UserPage() {
-  const { columns, data } = useUserPageTable();
+  const { data, columns } = useUserPageTable();
 
   return (
     <>

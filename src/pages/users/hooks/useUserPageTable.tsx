@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
+import { UserResponse } from "../helpers/UserPage.types";
+import { useEffect, useState } from "react";
 import {
   CellProps,
   ColumnTypes,
-} from "../../../components/Table/helpers/table.types";
-import { UserResponse } from "../helpers/UserPage.types";
-import { useEffect, useState } from "react";
+} from "../../../shared/components/Table/helpers/table.types";
 
 export default function useUserPageTable() {
   const [data, setData] = useState<UserResponse[]>([]);

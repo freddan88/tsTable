@@ -1,13 +1,9 @@
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import useBasePath from "../../shared/hooks/useBasePath";
 
 export default function UserPageModal() {
   const params = useParams<{ id: string }>();
-  const location = useLocation();
-
-  const basePath = Object.values(params).reduce((path, param) => {
-    const newPath = path.replace("/" + param, "");
-    return newPath.length === 0 ? "/" : newPath;
-  }, location.pathname);
+  const basePath = useBasePath(params);
 
   return <Link to={basePath}>{params.id}</Link>;
 }
