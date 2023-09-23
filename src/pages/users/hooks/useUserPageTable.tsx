@@ -6,7 +6,7 @@ import {
 import { UserResponse } from "../helpers/UserPage.types";
 import { useEffect, useState } from "react";
 
-export default function useUserPageColumns() {
+export default function useUserPageTable() {
   const [data, setData] = useState<UserResponse[]>([]);
 
   const columns: ColumnTypes<UserResponse> = [
