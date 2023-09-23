@@ -4,7 +4,7 @@ import TableColumnsApi from "./components/Table/helpers/TableColumnsApi";
 import { UserResponse } from "./components/Table/helpers/tableTypes";
 
 function App() {
-  const [data, setData] = useState<UserResponse[]>();
+  const [data, setData] = useState<UserResponse[]>([]);
   const [modal, setModal] = useState<UserResponse>();
 
   useEffect(() => {
@@ -24,8 +24,6 @@ function App() {
     if (!modal) return;
     console.log(modal);
   }, [modal]);
-
-  if (!data) return;
 
   return (
     <div className="max-w-4xl mx-auto">
