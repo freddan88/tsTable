@@ -1,13 +1,14 @@
 import { ReactNode, useMemo, useState } from "react";
 import TableHeadColumn from "./partials/TableHeadColumn";
 import TableBodyColumn from "./partials/TableBodyColumn";
-import {
-  CaptionType,
-  ColumnType,
-  StringIndexType,
-} from "./helpers/table.types";
+import { ColumnType } from "./helpers/table.types";
 import TableFiltersAdvanced from "./partials/filters/TableFiltersAdvanced";
 import TableFiltersBasic from "./partials/filters/TableFiltersBasic";
+
+interface CaptionType {
+  label: string;
+  placement?: "caption-top" | "caption-bottom";
+}
 
 export interface TableProps {
   table: {
@@ -20,6 +21,10 @@ export interface TableProps {
     extended?: ReactNode;
     searchPlaceholder?: string;
   };
+}
+
+export interface StringIndexType {
+  [key: string]: string;
 }
 
 export default function Table({

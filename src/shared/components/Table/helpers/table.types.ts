@@ -1,19 +1,14 @@
 import { ReactNode } from "react";
 
-export interface StringIndexType {
-  [key: string]: string;
-}
-
-export interface CaptionType {
-  label: string;
-  placement?: "caption-top" | "caption-bottom";
-}
-
-export interface ColumnProps {
+interface ColumnProps {
   columnIndex: number;
   columns: ColumnType[];
   column: ColumnType;
 }
+
+type Accessors<A> = keyof A;
+
+export type ColumnTypes<T> = ColumnType<Accessors<T>>[];
 
 export interface CellProps<T> {
   rowIndex: number;
@@ -21,10 +16,6 @@ export interface CellProps<T> {
   cellValue: string;
   row: T;
 }
-
-type Accessors<A> = keyof A;
-
-export type ColumnTypes<T> = ColumnType<Accessors<T>>[];
 
 export interface ColumnType<A = string, T = never> {
   Header: string | ReactNode | ((props: ColumnProps) => JSX.Element);
