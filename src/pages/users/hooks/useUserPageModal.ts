@@ -12,5 +12,5 @@ export default function useUserPageModal({ id }: HookModalTypes) {
     enabled: Boolean(id?.toString()),
   });
 
-  return { isLoading, data: response?.data };
+  return { isLoading, data: response?.data || [] };
 }
