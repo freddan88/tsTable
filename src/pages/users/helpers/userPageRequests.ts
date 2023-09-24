@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserResponse } from "./UserPage.types";
+import { UserResponse } from "./userPageTypes";
 
 export const getAllUsers = () => {
   return axios.get<UserResponse[]>(

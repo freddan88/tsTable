@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UserResponse } from "../helpers/UserPage.types";
+import { UserResponse } from "../helpers/userPageTypes";
 import {
   CellProps,
   ColumnTypes,
