@@ -4,5 +4,5 @@ import useTestPageTable from "./hooks/useTestPageTable";
 export default function TestPage() {
   const { data, columns } = useTestPageTable();
 
-  return <Table table={{ columns, data }} />;
+  return <Table table={{ columns, data, loading: false }} />;
 }
