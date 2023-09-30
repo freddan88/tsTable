@@ -9,7 +9,7 @@ export default function UserPage() {
 
   return (
     <>
-      <Table table={{ columns, data }} />
+      <Table table={{ columns, data, loading: isLoading }} />
       <Outlet />
     </>
   );

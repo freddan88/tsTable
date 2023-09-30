@@ -12,9 +12,10 @@ interface CaptionType {
 
 export interface TableProps {
   table: {
+    data: unknown[];
+    loading: boolean;
     columns: ColumnType[];
     caption?: CaptionType;
-    data: unknown[];
   };
   filters?: {
     basic: boolean;
@@ -28,7 +29,7 @@ export interface StringIndexType {
 }
 
 export default function Table({
-  table: { columns, data, caption },
+  table: { columns, data, caption, loading },
   filters,
 }: TableProps) {
   const [activeColumns, setActiveColumns] = useState<ColumnType[]>(columns);
@@ -36,6 +37,39 @@ export default function Table({
   const activeAccessors = useMemo<string[]>(() => {
     return activeColumns.map((obj) => obj.accessor);
   }, [activeColumns]);
+
+  const renderTableBodyContent = (
+    rowData: StringIndexType,
+    rowBodyIndex: number
+  ) => {
+    if (loading) {
+      const loadingRowKey = `table_body_loading_row_key_${rowBodyIndex}`;
+      const testId = `table-body-loading-row-${rowBodyIndex + 1}`;
+      return (
+        <td
+          key={loadingRowKey}
+          data-testid={testId}
+          colSpan={columns.length}
+          className="px-6 py-4"
+        >
+          Loading...
+        </td>
+      );
+    }
+    return columns.map((column, columnBodyIndex) => {
+      if (!activeAccessors.includes(column.accessor)) return null;
+      const columnBodyKey = `${column.id}_cell_${columnBodyIndex}`;
+      return (
+        <TableBodyColumn
+          columnIndex={columnBodyIndex}
+          rowIndex={rowBodyIndex}
+          key={columnBodyKey}
+          column={column}
+          row={rowData}
+        />
+      );
+    });
+  };
 
   return (
     <section className="rounded-md bg-white m-2 py-4 shadow-md">
@@ -73,26 +107,14 @@ export default function Table({
         <tbody>
           {data.map((row, rowBodyIndex) => {
             const rowBodyKey = `table_body_row_key_${rowBodyIndex}`;
+            const rowData = row as StringIndexType;
             return (
               <tr
                 key={rowBodyKey}
                 data-testid={`table-body-row-${rowBodyIndex + 1}`}
                 className="after:bg-gray-200 after:bottom-0 after:h-[1px] after:block after:absolute after:left-3 after:right-3 dark:bg-gray-800 dark:border-gray-700 bg-white relative"
               >
-                {columns.map((column, columnBodyIndex) => {
-                  if (!activeAccessors.includes(column.accessor)) return null;
-                  const columnBodyKey = `${column.id}_cell_${columnBodyIndex}`;
-                  const rowData = row as StringIndexType;
-                  return (
-                    <TableBodyColumn
-                      columnIndex={columnBodyIndex}
-                      rowIndex={rowBodyIndex}
-                      key={columnBodyKey}
-                      column={column}
-                      row={rowData}
-                    />
-                  );
-                })}
+                {renderTableBodyContent(rowData, rowBodyIndex)}
               </tr>
             );
           })}
