@@ -5,7 +5,7 @@ export default function useBasePath(params: Readonly<Params<string>>) {
 
   const basePath = Object.values(params).reduce((path, param) => {
     if (path && param) {
-      const newPath = path.replace("/" + param, "");
+      const newPath = path.replace(`/${param}`, "");
       return newPath.length === 0 ? "/" : newPath;
     }
   }, location.pathname);
