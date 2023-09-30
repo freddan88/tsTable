@@ -13,9 +13,9 @@ interface CaptionType {
 export interface TableProps {
   table: {
     data: unknown[];
-    loading: boolean;
     columns: ColumnType[];
     caption?: CaptionType;
+    loading?: boolean;
   };
   filters?: {
     basic: boolean;
