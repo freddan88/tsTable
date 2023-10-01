@@ -4,17 +4,17 @@ const MIN_WIDTH = 15;
 
 export default function Shelf() {
   const [positionX, setPositionX] = useState(MIN_WIDTH);
-  const [canMove, setCanMove] = useState(false);
+  const [isDraggable, setIsDraggable] = useState(false);
 
   const diffX = useRef(0);
 
   const handleDragStop = () => {
     diffX.current = 0;
-    setCanMove(false);
+    setIsDraggable(false);
   };
 
   const handleShelfDragUpdate = (e: MouseEvent<HTMLButtonElement>) => {
-    if (canMove) {
+    if (isDraggable) {
       const newPosition = window.innerWidth - (e.screenX - diffX.current);
       if (newPosition >= window.innerWidth) handleDragStop();
       if (newPosition <= MIN_WIDTH) handleDragStop();
@@ -24,7 +24,7 @@ export default function Shelf() {
 
   const handleShelfDragSetup = (e: MouseEvent<HTMLButtonElement>) => {
     diffX.current = e.screenX - e.currentTarget.getBoundingClientRect().left;
-    setCanMove(true);
+    setIsDraggable(true);
   };
 
   return (
