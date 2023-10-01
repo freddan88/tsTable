@@ -1,36 +1,42 @@
-import { useRef, MouseEvent, useState } from "react";
+import { MouseEvent, useState } from "react";
 
 const MIN_WIDTH = 15;
 
+// window.outerWidth / 3
+
 export default function Shelf() {
+  const [startPosition, setStartPosition] = useState(0);
   const [positionX, setPositionX] = useState(MIN_WIDTH);
   const [isDraggable, setIsDraggable] = useState(false);
 
-  const diffX = useRef(0);
-
-  const handleDragStop = () => {
-    diffX.current = 0;
+  const handleDraggableStop = () => {
     setIsDraggable(false);
+    setStartPosition(0);
   };
 
-  const handleShelfDragUpdate = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleDraggableUpdate = (e: MouseEvent<HTMLButtonElement>) => {
     if (isDraggable) {
-      const newPosition = window.innerWidth - (e.screenX - diffX.current);
-      if (newPosition >= window.innerWidth) return handleDragStop();
-      if (newPosition <= MIN_WIDTH) return handleDragStop();
-      setPositionX(newPosition);
+      const newPosition = window.innerWidth - (e.clientX - startPosition);
+      const boundRestrictionLeft = newPosition >= window.innerWidth;
+      const boundRestrictionRight = newPosition <= MIN_WIDTH;
+      if (boundRestrictionLeft || boundRestrictionRight) {
+        handleDraggableStop();
+      } else {
+        setPositionX(newPosition);
+      }
     }
   };
 
-  const handleShelfDragSetup = (e: MouseEvent<HTMLButtonElement>) => {
-    diffX.current = e.screenX - e.currentTarget.getBoundingClientRect().left;
+  const handleDraggableStart = (e: MouseEvent<HTMLButtonElement>) => {
+    const initial = e.clientX - e.currentTarget.getBoundingClientRect().x;
+    setStartPosition(initial);
     setIsDraggable(true);
   };
 
   return (
     <div
-      className="fixed inset-0 bg-slate-200 z-50"
       style={{ transform: `translateX(calc(100% - ${positionX}px))` }}
+      className="fixed inset-0 bg-slate-200 z-50"
     >
       <div
         className="h-full flex flex-col justify-center select-none"
@@ -38,10 +44,10 @@ export default function Shelf() {
       >
         <button
           className="h-64 bg-slate-400 cursor-w-resize"
-          onMouseDown={handleShelfDragSetup}
-          onMouseMove={handleShelfDragUpdate}
-          onMouseLeave={() => handleDragStop()}
-          onMouseUp={() => handleDragStop()}
+          onMouseMove={handleDraggableUpdate}
+          onMouseDown={handleDraggableStart}
+          onMouseLeave={handleDraggableStop}
+          onMouseUp={handleDraggableStop}
         ></button>
       </div>
     </div>
