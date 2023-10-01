@@ -16,8 +16,8 @@ export default function Shelf() {
   const handleShelfDragUpdate = (e: MouseEvent<HTMLButtonElement>) => {
     if (isDraggable) {
       const newPosition = window.innerWidth - (e.screenX - diffX.current);
-      if (newPosition >= window.innerWidth) handleDragStop();
-      if (newPosition <= MIN_WIDTH) handleDragStop();
+      if (newPosition >= window.innerWidth) return handleDragStop();
+      if (newPosition <= MIN_WIDTH) return handleDragStop();
       setPositionX(newPosition);
     }
   };
