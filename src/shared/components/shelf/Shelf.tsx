@@ -1,8 +1,7 @@
 import { MouseEvent, useState } from "react";
 
 const MIN_WIDTH = 15;
-
-// window.outerWidth / 3
+const OPEN_WIDTH = window.outerWidth / 3;
 
 export default function Shelf() {
   const [startPosition, setStartPosition] = useState(0);
@@ -39,9 +38,17 @@ export default function Shelf() {
       className="fixed inset-0 bg-slate-200 z-50"
     >
       <div
-        className="h-full flex flex-col justify-center select-none"
+        className="h-full flex flex-col justify-between select-none"
         style={{ width: MIN_WIDTH }}
       >
+        <button
+          onClick={() => {
+            const value = positionX <= MIN_WIDTH ? OPEN_WIDTH : MIN_WIDTH;
+            setPositionX(value);
+          }}
+        >
+          {positionX <= MIN_WIDTH ? "O" : "C"}
+        </button>
         <button
           className="h-64 bg-slate-400 cursor-w-resize"
           onMouseMove={handleDraggableUpdate}
@@ -49,6 +56,7 @@ export default function Shelf() {
           onMouseLeave={handleDraggableStop}
           onMouseUp={handleDraggableStop}
         ></button>
+        <hr />
       </div>
     </div>
   );
