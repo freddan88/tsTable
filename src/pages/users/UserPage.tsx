@@ -1,6 +1,7 @@
 import Table from "../../shared/components/Table/Table";
 import { Outlet } from "react-router-dom";
 import useUserPageTable from "./hooks/useUserPageTable";
+import Shelf from "../../shared/components/shelf/Shelf";
 
 export default function UserPage() {
   const { isLoading, data, columns } = useUserPageTable();
@@ -10,6 +11,7 @@ export default function UserPage() {
   return (
     <>
       <Table table={{ columns, data, loading: isLoading }} />
+      <Shelf />
       <Outlet />
     </>
   );
