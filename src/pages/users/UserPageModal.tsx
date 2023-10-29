@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Modal from "../../shared/components/modal/Modal";
 import useUserPageModal from "./hooks/useUserPageModal";
+import { RouteParams } from "./helpers/userPage.types";
 
 export default function UserPageModal() {
-  const { id, action } = useParams<{ id: string; action: string }>();
+  const { id, action } = useParams<RouteParams>();
 
   const navigate = useNavigate();
 

@@ -4,13 +4,14 @@ import useUserPageTable from "./hooks/useUserPageTable";
 import Shelf2 from "../../shared/components/shelf/Shelf2";
 import Shelf from "../../shared/components/shelf/Shelf";
 import Shelf3 from "../../shared/components/shelf/Shelf3";
+import { RouteParams } from "./helpers/userPage.types";
 
 export default function UserPage() {
   const { isLoading, data, columns } = useUserPageTable();
 
   const navigate = useNavigate();
 
-  const { id, action } = useParams<{ id: string; action: string }>();
+  const { id, action } = useParams<RouteParams>();
 
   const shelfId = action ? undefined : id;
 

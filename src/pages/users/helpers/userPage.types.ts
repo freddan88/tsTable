@@ -27,3 +27,8 @@ export interface UserResponse {
   username: string;
   website: string;
 }
+
+export type RouteParams = {
+  id: string;
+  action: string;
+};
