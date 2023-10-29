@@ -1,5 +1,5 @@
 import Table from "../../shared/components/Table/Table";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import useUserPageTable from "./hooks/useUserPageTable";
 import Shelf2 from "../../shared/components/shelf/Shelf2";
 import Shelf from "../../shared/components/shelf/Shelf";
@@ -10,6 +10,10 @@ export default function UserPage() {
 
   const navigate = useNavigate();
 
+  const { id, action } = useParams<{ id: string; action: string }>();
+
+  const shelfId = action ? undefined : id;
+
   const handleClose = () => {
     navigate("/", {
       preventScrollReset: true,
@@ -17,17 +21,10 @@ export default function UserPage() {
     });
   };
 
-  const getShelfId = () => {
-    if (window.location.pathname.length > 0) {
-      const param = window.location.pathname.split("/")[1];
-      return Number.isNaN(parseInt(param)) ? undefined : param;
-    }
-  };
-
   return (
     <>
       <Table table={{ columns, data, loading: isLoading }} />
-      <Shelf3 onClose={handleClose} id={getShelfId()} />
+      <Shelf3 onClose={handleClose} id={shelfId} />
       <Outlet />
     </>
   );
