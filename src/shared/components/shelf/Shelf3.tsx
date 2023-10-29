@@ -71,7 +71,7 @@ export default function Shelf3({
   }, [id]);
 
   return (
-    <div
+    <aside
       style={{ transform: `translateX(calc(100% - ${positionX}px))` }}
       className="fixed inset-0 bg-slate-200 z-50 flex"
     >
@@ -95,9 +95,9 @@ export default function Shelf3({
         <hr />
       </div>
       <section className="flex-1 p-4">
-        <h2>Details</h2>
+        <h2 className="pb-4">Details</h2>
         {children}
       </section>
-    </div>
+    </aside>
   );
 }
