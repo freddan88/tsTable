@@ -3,12 +3,12 @@ import UserPageModal from "../pages/users/UserPageModal";
 import Portal from "../shared/components/Portal";
 
 const userPageRoutes = {
-  path: "/",
+  path: "/:id?",
   element: <UserPage />,
   // errorElement: <ErrorPage />,
   children: [
     {
-      path: ":id",
+      path: "edit/:id",
       element: (
         <Portal>
           <UserPageModal />
