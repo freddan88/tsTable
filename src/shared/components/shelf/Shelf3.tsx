@@ -1,5 +1,7 @@
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import {
   MutableRefObject,
+  PropsWithChildren,
   RefObject,
   useCallback,
   useEffect,
@@ -8,8 +10,18 @@ import {
 } from "react";
 
 const MIN_WIDTH = 15;
+const OPEN_WIDTH = window.outerWidth / 3;
 
-export default function Shelf3() {
+type Shelf3Props = {
+  id?: string;
+  onClose?: () => void;
+};
+
+export default function Shelf3({
+  children,
+  onClose,
+  id,
+}: PropsWithChildren<Shelf3Props>) {
   const [positionX, setPositionX] = useState(MIN_WIDTH);
 
   const handleElement: RefObject<HTMLButtonElement> = useRef(null);
@@ -53,20 +65,39 @@ export default function Shelf3() {
     };
   }, [handleResizablePanelStart, handleResizablePanelStop]);
 
+  useEffect(() => {
+    if (!id) return;
+    setPositionX(OPEN_WIDTH);
+  }, [id]);
+
   return (
-    <section
+    <div
       style={{ transform: `translateX(calc(100% - ${positionX}px))` }}
-      className="fixed inset-0 bg-slate-200 z-50"
+      className="fixed inset-0 bg-slate-200 z-50 flex"
     >
       <div
-        className="h-full flex flex-col justify-center select-none"
+        className="h-full flex flex-col justify-between select-none"
         style={{ width: MIN_WIDTH }}
       >
         <button
+          onClick={() => {
+            const value = positionX <= MIN_WIDTH ? OPEN_WIDTH : MIN_WIDTH;
+            if (onClose) onClose();
+            setPositionX(value);
+          }}
+        >
+          {positionX <= MIN_WIDTH ? <MdChevronLeft /> : <MdChevronRight />}
+        </button>
+        <button
           ref={handleElement}
           className="h-64 bg-slate-400 cursor-ew-resize"
-        ></button>
+        />
+        <hr />
       </div>
-    </section>
+      <section className="flex-1 p-4">
+        <h2>Details</h2>
+        {children}
+      </section>
+    </div>
   );
 }
