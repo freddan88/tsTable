@@ -3,10 +3,13 @@ import Modal from "../../shared/components/modal/Modal";
 import useUserPageModal from "./hooks/useUserPageModal";
 
 export default function UserPageModal() {
-  const params = useParams<{ id: string }>();
+  const { id, action } = useParams<{ id: string; action: string }>();
+
   const navigate = useNavigate();
 
-  const response = useUserPageModal({ id: params.id });
+  const response = useUserPageModal({ id, action });
+
+  console.log(response);
 
   const handleClose = () => {
     navigate("/", {
@@ -17,7 +20,7 @@ export default function UserPageModal() {
 
   return (
     <Modal onClose={handleClose}>
-      <div>{params.id}</div>
+      <div>{id}</div>
       <footer className="py-2 flex justify-between items-center justify-self-end">
         <button type="button" onClick={handleClose}>
           Cancel
