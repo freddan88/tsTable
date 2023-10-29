@@ -8,7 +8,15 @@ const userPageRoutes = {
   // errorElement: <ErrorPage />,
   children: [
     {
-      path: ":action/:id?",
+      path: "add",
+      element: (
+        <Portal>
+          <UserPageModal />
+        </Portal>
+      ),
+    },
+    {
+      path: ":action/:id",
       element: (
         <Portal>
           <UserPageModal />
