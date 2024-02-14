@@ -45,6 +45,7 @@ export default function useUserPageTable() {
       id: "da3be3d7-e3e7-4a26-87ba-70ac37bc0c0f",
       Header: null,
       accessor: "id",
+      size: "narrow",
       sortable: false,
       Cell: (props: CellProps<UserResponse>) => {
         return <Link to={`/edit/${props.cellValue}`}>Edit</Link>;
@@ -54,6 +55,7 @@ export default function useUserPageTable() {
       id: "da3be3d7-e3e7-4a26-87ba-70ac37bc1c0f",
       Header: null,
       accessor: "id",
+      size: "narrow",
       sortable: false,
       Cell: (props: CellProps<UserResponse>) => {
         return <Link to={`/${props.cellValue}`}>More</Link>;

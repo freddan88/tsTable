@@ -22,6 +22,7 @@ export interface ColumnType<A = string, T = never> {
   accessor: A;
   sortable: boolean;
   id: string;
+  size?: number | "narrow";
   Cell?: ReactNode | ((props: CellProps<T>) => JSX.Element);
   visibilityMenu?: {
     label: string;
