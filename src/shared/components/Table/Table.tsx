@@ -4,6 +4,7 @@ import TableBodyColumn from "./partials/TableBodyColumn";
 import { ColumnType } from "./helpers/table.types";
 import TableFiltersAdvanced from "./partials/filters/TableFiltersAdvanced";
 import TableFiltersBasic from "./partials/filters/TableFiltersBasic";
+import TablePagination from "./partials/TablePagination";
 
 interface CaptionType {
   label: string;
@@ -120,6 +121,7 @@ export default function Table({
           })}
         </tbody>
       </table>
+      <TablePagination />
     </section>
   );
 }
