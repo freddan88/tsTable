@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 const PAGES_SHOWN = 3; // MAX_PAGINATION_BUTTONS
 const BUTTON_SIZE = 24;
 const BUTTON_LEFT_MARGIN = 4;
-const PAGES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const PAGES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 100, 101, 102, 103, 104];
 
 export default function TablePagination() {
   const [translateValue, setTranslateValue] = useState(0);
@@ -13,12 +13,10 @@ export default function TablePagination() {
     return buttonTotalSize * PAGES_SHOWN;
   }, [buttonTotalSize]);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (pageIndex: number) => {
     if (PAGES_SHOWN === PAGES.length) return;
-    if (page === 1 || page === 2) {
-      return setTranslateValue(0);
-    }
-    setTranslateValue(-(page - 2) * buttonTotalSize);
+    if (pageIndex === 0 || pageIndex === 1) return setTranslateValue(0);
+    setTranslateValue(-(pageIndex - 1) * buttonTotalSize);
   };
 
   return (
@@ -43,18 +41,17 @@ export default function TablePagination() {
               translate: `${translateValue}px 0`,
             }}
           >
-            {PAGES.map((page) => {
+            {PAGES.map((page, index) => {
               return (
                 <button
                   key={page}
                   type="button"
-                  className="border rounded-lg text-center"
+                  className="border rounded-lg text-center px-[6.49px]"
                   style={{
-                    width: BUTTON_SIZE,
                     height: BUTTON_SIZE,
                     marginLeft: BUTTON_LEFT_MARGIN,
                   }}
-                  onClick={() => handlePageChange(page)}
+                  onClick={() => handlePageChange(index)}
                 >
                   {page}
                 </button>
